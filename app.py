@@ -1,8 +1,8 @@
+import os
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Datos de ejemplo
 tasks = [
     {'id': 1, 'title': 'Tarea 1', 'done': False},
     {'id': 2, 'title': 'Tarea 2', 'done': True},
@@ -17,4 +17,5 @@ def get_tasks():
     return jsonify({'data': tasks})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Usa el puerto asignado por Railway
+    app.run(host="0.0.0.0", port=port)
